@@ -1,0 +1,409 @@
+This document contains details of all api of this application.
+
+1. Get list of all survivors
+
+	url : - {context-path}/robot/apocalypse/survivors
+	request method : - GET
+	
+	example curl :-
+		curl --location --request GET 'http://localhost:8080/robot/apocalypse/survivors'
+	
+	response code - 200, 500
+	
+	response example:-
+	
+		[
+		    {
+		        "id": 13,
+		        "name": "Survivor 13",
+		        "gender": "Female",
+		        "age": 28,
+		        "resources": [
+		            "Water",
+		            "Food",
+		            "Medication",
+		            "Ammunition"
+		        ],
+		        "lastLocation": {
+		            "latitude": 26.84,
+		            "longitude": 75.74
+		        }
+		    },
+		    {
+		        "id": 14,
+		        "name": "Survivor 14",
+		        "gender": "Female",
+		        "age": 28,
+		        "resources": [
+		            "Water",
+		            "Food",
+		            "Medication",
+		            "Ammunition"
+		        ],
+		        "lastLocation": {
+		            "latitude": 28.84,
+		            "longitude": 73.74
+		        }
+		    },
+		    {
+		        "id": 15,
+		        "name": "Survivor 15",
+		        "gender": "Female",
+		        "age": 28,
+		        "resources": [
+		            "Water",
+		            "Food",
+		            "Medication",
+		            "Ammunition"
+		        ],
+		        "lastLocation": {
+		            "latitude": 26.84,
+		            "longitude": 75.74
+		        }
+		    }
+		]
+
+
+2. Get details of survivour with given id
+ 
+	url : - {context-path}/robot/apocalypse/survivors/{survivorId} :- 
+	request method : - GET
+	Parameter description : - 
+	 	1) survivorId - Id of survivor of which we want to get details
+	
+	example curl : -
+		curl --location --request GET 'http://localhost:8080/robot/apocalypse/survivors/1'
+	
+	response code - 200, 400, 500
+	
+	response example : - 
+	
+		{
+		    "id": 14,
+		    "name": "Survivor 14",
+		    "gender": "Female",
+		    "age": 28,
+		    "resources": [
+		        "Water",
+		        "Food",
+		        "Medication",
+		        "Ammunition"
+		    ],
+		    "lastLocation": {
+		        "latitude": 28.8401985,
+		        "longitude": 73.7373978
+		    }
+		}
+	
+
+3. Create a new survivor
+
+	url : - {context-path}/robot/apocalypse/survivors
+	request method : - POST
+	request body example:-
+	
+		{
+		    "name": "Survivor 1",
+		    "age" : 28,
+		    "gender" : "female",
+		    "resources" : ["Water", "Food", "Medication", "Ammunition"],
+		    "lastLocation" : {
+		        "latitude": "26.8401985",
+		        "longitude": "75.7373978"
+		    }
+		}
+	
+	example curl : -
+	
+		curl --location --request POST 'http://localhost:8080/robot/apocalypse/survivors' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{
+		    "name": "Survivor 15",
+		    "age" : 28,
+		    "gender" : "female",
+		    "resources" : ["Water", "Food", "Medication", "Ammunition"],
+		    "lastLocation" : {
+		        "latitude": "26.8401985",
+		        "longitude": "75.7373978"
+		    }
+		}'
+	
+	response code - 200, 400, 500
+	
+	response example :-
+	
+		{
+		    "id": 14,
+		    "name": "Survivor 14",
+		    "gender": "Female",
+		    "age": 28,
+		    "resources": [
+		        "Water",
+		        "Food",
+		        "Medication",
+		        "Ammunition"
+		    ],
+		    "lastLocation": {
+		        "latitude": 28.8401985,
+		        "longitude": 73.7373978
+		    }
+		}
+
+4. Update survivor details for given id
+
+	url :- {context-path}/robot/apocalypse/survivors/{survivorId}
+	request method : - PUT
+	Parameter description : - 
+	 	1) survivorId - Id of survivor of which we want to update the details
+	 	
+	request body example:-
+	
+		{
+			"id": 1,
+		    "name": "Survivor 1",
+		    "age" : 28,
+		    "gender" : "female",
+		    "resources" : ["Water", "Food", "Medication", "Ammunition"],
+		    "lastLocation" : {
+		        "latitude": "26.8401985",
+		        "longitude": "75.7373978"
+		    }
+		}
+	
+	response code - 200, 400, 500
+	
+	example curl : -
+	
+		curl --location --request PUT 'http://localhost:8080/robot/apocalypse/survivors/8' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{
+		    "name": "Survivor 8",
+		    "age" : 28,
+		    "gender" : "female",
+		    "resources" : [],
+		    "lastLocation" : {
+		        "latitude": "26.8401985",
+		        "longitude": "75.7373978"
+		    }
+		}'
+	
+	response codes - 200, 400, 500
+	
+	response example :- 
+	
+		{
+		    "id": 14,
+		    "name": "Survivor 14",
+		    "gender": "Female",
+		    "age": 28,
+		    "resources": [
+		        "Water",
+		        "Food",
+		        "Medication",
+		        "Ammunition"
+		    ],
+		    "lastLocation": {
+		        "latitude": 28.8401985,
+		        "longitude": 73.7373978
+		    }
+		}
+
+
+5. Delete survivor details for given id
+
+	url - {context-path}/robot/apocalypse/survivors/{survivorId}
+	request method : - DELETE
+	Parameter description : - 
+	 	1) survivorId - Id of survivor to be deleted
+	 	
+	example curl :-
+	
+		curl --location --request DELETE 'http://localhost:8080/robot/apocalypse/survivors/12'
+	
+	response codes - 200, 400, 500
+	
+	response example :- 
+	
+		Survivor with id : 12 is deleted successfully
+
+6. Update last location of survivor
+
+	url :- {context-path}/robot/apocalypse/survivors/{survivorId}/location
+	request method : - PUT
+	Parameter description : - 
+	 	1) survivorId - Id of survivor for which location needs to be deleted 
+	
+	request body example : -
+	
+		{
+		    "latitude": 28.8401985,
+		    "longitude": 73.7373978
+		}
+	
+	example curl :-
+	
+		curl --location --request PUT 'http://localhost:8080/robot/apocalypse/survivors/14/location' \
+		--header 'Content-Type: application/json' \
+		--data-raw '{
+		    "latitude": 28.8401985,
+		    "longitude": 73.7373978
+		}'
+	
+	response code - 200, 400
+	
+	response example :-
+	
+		{
+		    "id": 14,
+		    "name": "Survivor 14",
+		    "gender": "Female",
+		    "age": 28,
+		    "resources": [
+		        "Water",
+		        "Food",
+		        "Medication",
+		        "Ammunition"
+		    ],
+		    "lastLocation": {
+		        "latitude": 28.8401985,
+		        "longitude": 73.7373978
+		    }
+		}
+
+7. Report contamination of a survivor
+
+	url : - {context-path}/robot/apocalypse/survivors/report/contamination?reportingSurvivorId={reportingSurvivorId}&survivorId={survivorId}
+	request method : - PUT
+	Parameter description : - 
+	 	1) reportingSurvivorId - Id of survivor which is reporting contamination.
+	 	2) survivorId - Id of survivor for which contamination to be reported
+	 	
+	example curl:-
+	
+		curl --location --request PUT 'http://localhost:8080/robot/apocalypse/survivors/report/contamination?reportingSurvivorId=15&survivorId=13'
+	
+	response code - 200, 400, 500
+	
+	response example : - 
+	
+		Contamination for survivor : 13 is reported by survivor : 15.
+
+
+8. To get reports
+
+	url : - {context-path}/robot/apocalypse/survivors/report
+	request method :- GET
+	
+	example curl :- 
+	
+		curl --location --request GET 'http://localhost:8080/robot/apocalypse/survivors/report'
+	
+	Possible response code - 200, 500
+	
+	response example : -
+	
+		{
+		    "infectedSurvivorsPercentage": 25.00,
+		    "nonInfectedSurvivorsPercentage": 75.00,
+		    "infectedSurvivors": [
+		        {
+		            "id": 13,
+		            "name": "Survivor 13",
+		            "gender": "Female",
+		            "age": 28,
+		            "resources": [
+		                "Water",
+		                "Food",
+		                "Medication",
+		                "Ammunition"
+		            ],
+		            "lastLocation": {
+		                "latitude": 26.84,
+		                "longitude": 75.74
+		            }
+		        }
+		    ],
+		    "nonInfectedSurvivors": [
+		        {
+		            "id": 12,
+		            "name": "Survivor 1",
+		            "gender": "FEMALE",
+		            "age": 10,
+		            "resources": [
+		                "Water",
+		                "Food",
+		                "Medication",
+		                "Ammunition"
+		            ],
+		            "lastLocation": {
+		                "latitude": 26.84,
+		                "longitude": 75.74
+		            }
+		        },
+		        {
+		            "id": 14,
+		            "name": "Survivor 14",
+		            "gender": "Female",
+		            "age": 28,
+		            "resources": [
+		                "Water",
+		                "Food",
+		                "Medication",
+		                "Ammunition"
+		            ],
+		            "lastLocation": {
+		                "latitude": 28.84,
+		                "longitude": 73.74
+		            }
+		        }
+		    ],
+		    "robots": [
+		        {
+		            "model": "19U4J",
+		            "serialNumber": "IXOLAUDSYJDQGDE",
+		            "manufacturedDate": "2022-04-10T08:15:15.2492789Z",
+		            "category": "Land"
+		        },
+		        {
+		            "model": "1ABJ9",
+		            "serialNumber": "RHNGTVGLBE62XUO",
+		            "manufacturedDate": "2022-04-09T08:15:15.2492782Z",
+		            "category": "Land"
+		        }
+		    ]
+		}
+
+9. To get the list of robots 
+
+	url : - {context-path}/robot/apocalypse/robots
+	request method : - GET
+	
+	example curl : - 
+	
+		curl --location --request GET 'http://localhost:8080/robot/apocalypse/robots'
+	
+	Possible response code - 200, 500
+	
+	response example: -
+	
+		[
+		    {
+		        "model": "0UB5C",
+		        "serialNumber": "XWTESYPOQMQUFVZ",
+		        "manufacturedDate": "2022-03-24T08:07:44.7053951Z",
+		        "category": "Flying"
+		    },
+		    {
+		        "model": "2YOD6",
+		        "serialNumber": "ELI7NO2J2BAUFSE",
+		        "manufacturedDate": "2022-03-12T08:07:44.7053834Z",
+		        "category": "Flying"
+		    },
+		    {
+		        "model": "5M3YG",
+		        "serialNumber": "S37ENG9M3XYL596",
+		        "manufacturedDate": "2022-04-05T08:07:44.7054129Z",
+		        "category": "Flying"
+		    }
+		]
+
