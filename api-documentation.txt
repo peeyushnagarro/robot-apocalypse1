@@ -128,7 +128,7 @@ This document contains details of all api of this application.
 		    }
 		}'
 	
-	response code - 200, 400, 500
+	response code - 201, 400, 500
 	
 	response example :-
 	

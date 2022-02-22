@@ -65,7 +65,7 @@ public class SurvivorController {
 
 	@Operation(summary = "Create a new survivor")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Create a new survivor", content = {
+			@ApiResponse(responseCode = "201", description = "Create a new survivor", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Survivor.class)) }),
 			@ApiResponse(responseCode = "400", description = "Bad request", content = {
 					@Content(mediaType = "application/json") }) })
@@ -90,7 +90,7 @@ public class SurvivorController {
 	@Operation(summary = "Delete survivor details for given id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Delete survivor details for given id", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Survivor.class)) }),
+					@Content(mediaType = "application/json") }),
 			@ApiResponse(responseCode = "400", description = "Bad request", content = {
 					@Content(mediaType = "application/json") }) })
 	@DeleteMapping(value = "/{survivorId}")
@@ -118,7 +118,7 @@ public class SurvivorController {
 	@Operation(summary = "Report contamination of a survivor")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Report contamination of a survivor", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = Survivor.class)) }),
+					@Content(mediaType = "application/json") }),
 			@ApiResponse(responseCode = "400", description = "Bad request", content = {
 					@Content(mediaType = "application/json") }) })
 	@PutMapping(value = "/report/contamination")
@@ -132,7 +132,7 @@ public class SurvivorController {
 
 	@Operation(summary = "To get repots")
 	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "To get repots", content = {
-			@Content(mediaType = "application/json", schema = @Schema(implementation = Survivor.class)) }) })
+			@Content(mediaType = "application/json", schema = @Schema(implementation = SurvivorReport.class)) }) })
 	@GetMapping(value = "/report")
 	public ResponseEntity<SurvivorReport> generateReport() {
 		return new ResponseEntity<SurvivorReport>(survivorService.generateReport(), HttpStatus.OK);
